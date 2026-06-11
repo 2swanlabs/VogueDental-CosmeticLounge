@@ -1,0 +1,1329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vogue Dental & Cosmetic Lounge DMCC | Expert Dental Care Dubai</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;0,6..96,500;1,6..96,300;1,6..96,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #A88A61;
+    --gold-light: #C4A87A;
+    --gold-pale: #E8D9C0;
+    --ivory: #F8F4EF;
+    --pearl: #FFFFFF;
+    --beige: #EFE7DE;
+    --marble: #D8D1C8;
+    --charcoal: #2B2B2B;
+    --black: #1B1B1B;
+    --text-body: #2E2922;
+    --text-muted: #4A4138;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--ivory); color: var(--text-body); overflow-x: hidden; cursor: none; }
+
+  /* CURSOR */
+  .cursor { position: fixed; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width .3s ease, height .3s ease; }
+  .cursor-ring { position: fixed; width: 32px; height: 32px; border: 1px solid var(--gold); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: width .3s ease, height .3s ease, opacity .3s ease; opacity: .6; }
+  .cursor-hover { width: 48px; height: 48px; opacity: .3; }
+  .cursor-dot-hover { width: 4px; height: 4px; }
+  @media (hover: none) { .cursor, .cursor-ring { display: none; } body { cursor: auto; } }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; padding: 14px 5%; height: auto; display: flex; align-items: center; justify-content: space-between; transition: background .4s ease, backdrop-filter .4s ease, box-shadow .4s ease; }
+  nav.scrolled { background: rgba(248,244,239,.95); backdrop-filter: blur(16px); box-shadow: 0 1px 0 rgba(168,138,97,.2); }
+  .nav-logo { display: flex; align-items: center; gap: 0; text-decoration: none; }
+  .nav-logo img { height: 80px; width: auto; max-width: 240px; object-fit: contain; display: block; opacity: 1 !important; }
+  /* On hero (not scrolled), invert logo to show on dark bg */
+  nav:not(.scrolled) .nav-logo img { filter: brightness(0) invert(1); }
+  nav.scrolled .nav-logo img { filter: none; }
+  .nav-links { display: flex; list-style: none; gap: 32px; }
+  .nav-links a { text-decoration: none; font-size: 11.5px; letter-spacing: 2.5px; text-transform: uppercase; font-weight: 500; color: rgba(255,255,255,.96); transition: color .3s ease; }
+  nav.scrolled .nav-links a { color: var(--text-body); }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-right { display: flex; align-items: center; }
+  .btn-nav { background: var(--gold); color: #fff; border: none; padding: 11px 22px; font-size: 10.5px; letter-spacing: 2.5px; text-transform: uppercase; font-family: 'Inter', sans-serif; font-weight: 500; border-radius: 4px; cursor: none; text-decoration: none; display: inline-block; transition: background .3s ease, transform .3s ease, box-shadow .3s ease; white-space: nowrap; }
+  .btn-nav:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(168,138,97,.3); }
+
+  /* HERO — full width image with text overlay */
+  .hero { min-height: 100vh; position: relative; overflow: hidden; }
+  .hero-image { position: absolute; inset: 0; }
+  .hero-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; animation: subtleZoom 20s ease-in-out infinite alternate; filter: brightness(.8) saturate(1.1) sepia(.08); }
+  /* Left fade overlay so text is legible */
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(to right, rgba(30,24,16,.91) 0%, rgba(30,24,16,.72) 40%, rgba(30,24,16,.20) 66%, rgba(30,24,16,0) 100%); z-index: 1; }
+  /* Vignette */
+  .hero-vignette { position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, transparent 40%, rgba(0,0,0,.3) 100%); z-index: 2; pointer-events: none; }
+  .hero-content { position: relative; z-index: 3; padding: 160px 6% 100px; max-width: 600px; }
+  .hero-eyebrow { font-size: 10.5px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; margin-bottom: 28px; opacity: 0; transform: translateY(20px); animation: fadeUp .8s ease .3s forwards; }
+  .hero-heading { font-family: 'Cormorant Garamond', serif; font-size: clamp(46px,5.5vw,80px); font-weight: 300; color: #fff; line-height: 1.05; letter-spacing: 1px; margin-bottom: 28px; opacity: 0; transform: translateY(20px); animation: fadeUp .8s ease .5s forwards; }
+  .hero-heading em { font-style: italic; color: var(--gold-light); }
+  .hero-body { font-size: 15.5px; line-height: 1.85; color: rgba(255,255,255,.85); font-weight: 400; letter-spacing: .3px; margin-bottom: 44px; max-width: 380px; opacity: 0; transform: translateY(20px); animation: fadeUp .8s ease .7s forwards; }
+  .hero-ctas { display: flex; flex-direction: column; gap: 18px; opacity: 0; transform: translateY(20px); animation: fadeUp .8s ease .9s forwards; }
+  .btn-primary { background: var(--gold); color: #fff; border: none; padding: 16px 36px; font-size: 11.5px; letter-spacing: 3px; text-transform: uppercase; font-family: 'Inter', sans-serif; font-weight: 500; border-radius: 4px; cursor: none; text-decoration: none; display: inline-block; align-self: flex-start; transition: background .3s ease, transform .3s ease, box-shadow .3s ease; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 12px 32px rgba(168,138,97,.4); }
+  .btn-text { display: inline-flex; align-items: center; gap: 12px; font-size: 10.5px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,.65); text-decoration: none; cursor: none; transition: color .3s ease, gap .3s ease; }
+  .btn-text:hover { color: var(--gold-light); gap: 18px; }
+  .btn-text-line { display: inline-block; width: 32px; height: 1px; background: currentColor; transition: width .3s ease; }
+  .btn-text:hover .btn-text-line { width: 48px; }
+
+  @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+  @keyframes subtleZoom { from { transform: scale(1); } to { transform: scale(1.06); } }
+
+  /* SHARED */
+  section { position: relative; }
+  .section-eyebrow { font-size: 10.5px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 500; }
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .8s ease, transform .8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: .1s; }
+  .reveal-delay-2 { transition-delay: .2s; }
+  .reveal-delay-3 { transition-delay: .3s; }
+  .reveal-delay-4 { transition-delay: .4s; }
+
+  /* PILLARS */
+  .pillars { background: var(--pearl); padding: 100px 5%; }
+  .pillars-header { text-align: center; margin-bottom: 60px; }
+  .pillars-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px,3vw,48px); font-weight: 300; color: var(--black); line-height: 1.2; }
+  .pillars-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 2px; }
+  .pillar-card { padding: 48px 28px; text-align: center; border: 1px solid rgba(168,138,97,.12); transition: transform .4s ease, box-shadow .4s ease, border-color .4s ease; cursor: none; position: relative; overflow: hidden; }
+  .pillar-card::after { content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 0; height: 2px; background: var(--gold); transition: width .4s ease; }
+  .pillar-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(168,138,97,.12); border-color: rgba(168,138,97,.3); }
+  .pillar-card:hover::after { width: 60%; }
+  .pillar-icon { width: 52px; height: 52px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; }
+  .pillar-icon svg { width: 100%; height: 100%; }
+  .pillar-title { font-family: 'Cormorant Garamond', serif; font-size: 19.5px; font-weight: 500; color: var(--black); margin-bottom: 10px; letter-spacing: .5px; }
+  .pillar-desc { color: var(--charcoal); font-size: 13.5px; line-height: 1.75; color: var(--text-muted); }
+
+  /* DUBAI STATEMENT */
+  .dubai-statement { padding: 120px 5%; background: var(--black); position: relative; overflow: hidden; text-align: center; }
+  .dubai-bg { position: absolute; inset: 0; background: linear-gradient(to bottom,rgba(27,27,27,.7),rgba(27,27,27,.85)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400"><rect fill="%231B1B1B" width="800" height="400"/><g fill="none" stroke="%23A88A61" stroke-width="0.5" opacity="0.3"><line x1="400" y1="400" x2="400" y2="50"/><line x1="400" y1="50" x2="350" y2="120"/><line x1="400" y1="50" x2="450" y2="120"/><line x1="350" y1="120" x2="340" y2="220"/><line x1="450" y1="120" x2="460" y2="220"/><rect x="330" y="220" width="20" height="180"/><rect x="450" y="220" width="20" height="180"/><rect x="300" y="260" width="15" height="140"/><rect x="485" y="260" width="15" height="140"/><rect x="265" y="290" width="12" height="110"/><rect x="523" y="290" width="12" height="110"/><rect x="230" y="310" width="22" height="90"/><rect x="548" y="310" width="22" height="90"/></g></svg>'); background-size: cover; background-position: center; }
+  .dubai-particles { position: absolute; inset: 0; overflow: hidden; }
+  .particle { position: absolute; width: 2px; height: 2px; background: var(--gold); border-radius: 50%; animation: particleFloat linear infinite; opacity: 0; }
+  @keyframes particleFloat { 0% { transform: translateY(100vh); opacity: 0; } 10% { opacity: .6; } 90% { opacity: .3; } 100% { transform: translateY(-20px); opacity: 0; } }
+  .dubai-content { position: relative; z-index: 2; }
+  .dubai-content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(44px,6vw,96px); font-weight: 300; color: #fff; line-height: 1.05; letter-spacing: 2px; margin-bottom: 20px; }
+  .dubai-content h2 em { font-style: italic; color: var(--gold-light); display: block; }
+  .dubai-content p { font-size: 14.5px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,.72); margin-bottom: 44px; }
+  .dubai-divider { width: 1px; height: 60px; background: linear-gradient(to bottom,transparent,var(--gold),transparent); margin: 0 auto 40px; }
+  .btn-outline-gold { border: 1px solid var(--gold); color: var(--gold); background: transparent; padding: 14px 36px; font-size: 10.5px; letter-spacing: 3px; text-transform: uppercase; font-family: 'Inter', sans-serif; font-weight: 500; border-radius: 4px; cursor: none; text-decoration: none; display: inline-block; transition: background .3s ease, color .3s ease, transform .3s ease; }
+  .btn-outline-gold:hover { background: var(--gold); color: #fff; transform: translateY(-2px); }
+
+  /* ABOUT */
+  .about { display: grid; grid-template-columns: 35fr 65fr; min-height: 80vh; }
+  .about-image { position: relative; overflow: hidden; background: var(--beige); min-height: 500px; display: flex; align-items: center; justify-content: center; }
+  .about-image-accent { position: absolute; bottom: 40px; right: -1px; width: 3px; height: 80px; background: var(--gold); }
+  .about-content { background: var(--ivory); padding: 80px 8%; display: flex; flex-direction: column; justify-content: center; }
+  .about-content h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px,3vw,50px); font-weight: 300; color: var(--black); line-height: 1.1; margin-bottom: 24px; }
+  .about-content h2 em { font-style: italic; color: var(--gold); }
+  .about-body { font-size: 14.5px; line-height: 1.9; color: var(--black); margin-bottom: 36px; font-weight: 300; letter-spacing: .3px; }
+  .about-checklist { list-style: none; margin-bottom: 44px; }
+  .about-checklist li { display: flex; align-items: center; gap: 14px; font-size: 13.5px; letter-spacing: .5px; color: var(--black); padding: 10px 0; border-bottom: 1px solid rgba(168,138,97,.12); font-weight: 400; }
+  .about-checklist li:last-child { border-bottom: none; }
+  .check-icon { width: 20px; height: 20px; border: 1px solid var(--gold); border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .check-icon svg { width: 10px; height: 10px; }
+  .btn-secondary { background: transparent; border: 1px solid var(--charcoal); color: var(--charcoal); padding: 14px 32px; font-size: 10.5px; letter-spacing: 2.5px; text-transform: uppercase; font-family: 'Inter', sans-serif; font-weight: 500; border-radius: 4px; cursor: none; text-decoration: none; display: inline-block; align-self: flex-start; transition: background .3s ease, color .3s ease, transform .3s ease; }
+  .btn-secondary:hover { background: var(--charcoal); color: #fff; transform: translateY(-2px); }
+
+  /* SERVICES */
+  .services { padding: 100px 5%; background: var(--pearl); }
+  .services-header { text-align: center; margin-bottom: 60px; }
+  .services-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px,3vw,52px); font-weight: 300; color: var(--black); line-height: 1.2; margin-bottom: 14px; }
+  .services-header p { font-size: 14.5px; color: var(--text-muted); max-width: 400px; margin: 0 auto; line-height: 1.6; }
+  .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .service-card { position: relative; overflow: hidden; background: var(--ivory); cursor: none; border: 1px solid rgba(168,138,97,.12); transition: border-color .4s ease, box-shadow .4s ease; }
+  .service-card:hover { border-color: var(--gold); box-shadow: 0 24px 60px rgba(168,138,97,.15); }
+  .service-img { height: 240px; overflow: hidden; position: relative; }
+  .service-img-bg { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; transition: transform .6s ease; position: relative; }
+  .service-card:hover .service-img-bg { transform: scale(1.05); }
+  .service-img-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgb(135 135 135 / 5%), transparent); }
+  .service-body { padding: 28px; }
+  .service-num { font-size: 10.5px; letter-spacing: 3px; color: var(--gold); margin-bottom: 8px; font-weight: 500; }
+  .service-title { font-family: 'Cormorant Garamond', serif; font-size: 22.5px; font-weight: 400; color: var(--black); margin-bottom: 10px; }
+  .service-desc { color: var(--charcoal); font-size: 13.5px; line-height: 1.75; color: var(--text-body); margin-bottom: 20px; }
+  .service-link { color: var(--gold); font-size: 10.5px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--gold); text-decoration: none; display: inline-flex; align-items: center; gap: 8px; cursor: none; transition: gap .3s ease; font-weight: 500; }
+  .service-link:hover { gap: 14px; }
+  .service-link-arrow { display: inline-block; width: 24px; height: 1px; background: var(--gold); transition: width .3s ease; }
+  .service-link:hover .service-link-arrow { width: 36px; }
+  .svc-bg-1,.svc-bg-2,.svc-bg-3,.svc-bg-4,.svc-bg-5,.svc-bg-6 { background: #F0EDE8; }
+  .svc-icon-large { width: 80px; height: 80px; opacity: .55; }
+
+  /* TECHNOLOGY */
+  .technology { background: var(--charcoal); padding: 100px 5%; position: relative; overflow: hidden; }
+  .tech-bg-accent { position: absolute; top: -50%; right: -10%; width: 600px; height: 600px; border-radius: 50%; background: radial-gradient(circle,rgba(168,138,97,.06),transparent 70%); pointer-events: none; }
+  .tech-header { text-align: center; margin-bottom: 72px; }
+  .tech-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px,3vw,52px); font-weight: 300; color: #fff; line-height: 1.2; margin-bottom: 14px; }
+  .tech-header p { font-size: 14.5px; color: rgba(255,255,255,.75); }
+  .tech-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(168,138,97,.15); }
+  .tech-item { background: var(--charcoal); padding: 48px 32px; transition: background .4s ease; cursor: none; position: relative; overflow: hidden; }
+  .tech-item::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(to right,var(--gold),transparent); transform: scaleX(0); transform-origin: left; transition: transform .4s ease; }
+  .tech-item:hover { background: rgba(168,138,97,.06); }
+  .tech-item:hover::before { transform: scaleX(1); }
+  .tech-item-num { font-size: 10.5px; letter-spacing: 3px; color: rgba(168,138,97,.5); margin-bottom: 28px; }
+  .tech-icon { margin-bottom: 20px; opacity: .7; transition: opacity .3s ease; }
+  .tech-item:hover .tech-icon { opacity: 1; }
+  .tech-title { font-family: 'Cormorant Garamond', serif; font-size: 21.5px; font-weight: 400; color: #fff; margin-bottom: 12px; }
+  .tech-desc { color: rgba(255,255,255,.78); font-size: 13.5px; line-height: 1.75; color: rgba(255,255,255,.75); }
+
+  /* TESTIMONIALS */
+  .testimonials { padding: 100px 5%; background: var(--ivory); overflow: hidden; }
+  .testimonials-header { text-align: center; margin-bottom: 60px; }
+  .testimonials-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px,3vw,52px); font-weight: 300; color: var(--black); margin-bottom: 16px; }
+  .google-badge { display: inline-flex; align-items: center; gap: 12px; background: var(--pearl); border: 1px solid rgba(168,138,97,.2); padding: 12px 24px; margin-bottom: 16px; }
+  .stars { color: #FBBC04; font-size: 16.5px; letter-spacing: 2px; }
+  .google-text { color: var(--charcoal); font-size: 12.5px; color: var(--text-muted); }
+
+  /* Desktop testimonials — auto scroll */
+  .testimonials-track-outer { overflow: hidden; position: relative; }
+  .testimonials-track-outer::before, .testimonials-track-outer::after { content: ''; position: absolute; top: 0; bottom: 0; width: 100px; z-index: 2; pointer-events: none; }
+  .testimonials-track-outer::before { left: 0; background: linear-gradient(to right,var(--ivory),transparent); }
+  .testimonials-track-outer::after { right: 0; background: linear-gradient(to left,var(--ivory),transparent); }
+  .testimonials-track { display: flex; gap: 24px; animation: scrollLeft 30s linear infinite; width: max-content; }
+  .testimonials-track:hover { animation-play-state: paused; }
+  @keyframes scrollLeft { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .testimonial-card { background: var(--pearl); border: 1px solid rgba(168,138,97,.15); padding: 40px; width: 380px; flex-shrink: 0; }
+  .testimonial-quote { font-size: 64.5px; font-family: 'Cormorant Garamond', serif; color: var(--gold); opacity: .3; line-height: .7; margin-bottom: 16px; }
+  .testimonial-text { font-family: 'Cormorant Garamond', serif; font-size: 17.5px; font-style: italic; line-height: 1.7; color: var(--charcoal); margin-bottom: 28px; font-weight: 300; }
+  .testimonial-footer { display: flex; align-items: center; gap: 14px; }
+  .testimonial-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--gold-pale); display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 16.5px; color: var(--gold); flex-shrink: 0; border: 1px solid rgba(168,138,97,.3); }
+  .testimonial-name { font-size: 13.5px; font-weight: 500; color: var(--black); letter-spacing: .5px; }
+  .testimonial-meta { color: var(--charcoal); font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+  .testimonial-stars { color: #FBBC04; font-size: 12.5px; letter-spacing: 2px; margin-top: 2px; }
+
+  /* Mobile testimonials carousel */
+  .testimonials-mobile { display: none; }
+  .mob-carousel-wrap { position: relative; overflow: hidden; }
+  .mob-carousel-track { display: flex; transition: transform .45s ease; }
+  .mob-carousel-track .testimonial-card { width: 100%; min-width: 100%; }
+  .mob-carousel-dots { display: flex; justify-content: center; gap: 6px; margin: 24px 0 16px; }
+  .mob-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--marble); transition: background .3s ease, transform .3s ease; }
+  .mob-dot.active { background: var(--gold); transform: scale(1.3); }
+  .mob-carousel-nav { display: flex; justify-content: center; gap: 16px; }
+  .mob-nav-btn { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--gold); background: transparent; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .3s ease, transform .3s ease; }
+  .mob-nav-btn:hover { background: var(--gold); }
+  .mob-nav-btn svg { stroke: var(--gold); transition: stroke .3s ease; }
+  .mob-nav-btn:hover svg { stroke: #fff; }
+
+  /* GALLERY */
+  .gallery { padding: 100px 5%; background: var(--pearl); }
+  .gallery-header { text-align: center; margin-bottom: 60px; }
+  .gallery-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px,3vw,52px); font-weight: 300; color: var(--black); }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3,1fr); grid-template-rows: auto; gap: 16px; }
+  .gallery-item { overflow: hidden; position: relative; cursor: none; border: 1px solid rgba(168,138,97,.1); }
+  .gallery-item:nth-child(1) { grid-row: span 2; }
+  .gallery-item:nth-child(4) { grid-column: span 2; }
+  .gallery-item-inner { width: 100%; height: 100%; min-height: 200px; display: flex; align-items: center; justify-content: center; transition: transform .6s ease; position: relative; overflow: hidden; }
+  .gallery-item:hover .gallery-item-inner { transform: scale(1.03); }
+  .gallery-item-overlay { position: absolute; inset: 0; background: rgba(27,27,27,0); display: flex; align-items: center; justify-content: center; transition: background .4s ease; }
+  .gallery-item:hover .gallery-item-overlay { background: rgba(27,27,27,.4); }
+  .gallery-item-frame { position: absolute; inset: 10px; border: 1px solid transparent; transition: border-color .4s ease; }
+  .gallery-item:hover .gallery-item-frame { border-color: var(--gold); }
+  .gallery-plus { width: 40px; height: 40px; border: 1px solid rgba(255,255,255,.8); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 20.5px; opacity: 0; transform: scale(.8); transition: opacity .4s ease, transform .4s ease; }
+  .gallery-item:hover .gallery-plus { opacity: 1; transform: scale(1); }
+  .gallery-bg-1 { background: linear-gradient(135deg,#EFE7DE,#D8D1C8); min-height: 420px; }
+  .gallery-bg-2 { background: linear-gradient(135deg,#F8F4EF,#EFE7DE); min-height: 200px; }
+  .gallery-bg-3 { background: linear-gradient(135deg,#D8D1C8,#EFE7DE); min-height: 200px; }
+  .gallery-bg-4 { background: linear-gradient(135deg,#2B2B2B,#1B1B1B); min-height: 220px; }
+  .gallery-bg-5 { background: linear-gradient(135deg,#EFE7DE,#F8F4EF); min-height: 200px; }
+  .gallery-bg-6 { background: linear-gradient(135deg,#F8F4EF,#EFE7DE); min-height: 200px; }
+  .gallery-placeholder-text { font-family: 'Cormorant Garamond', serif; font-size: 13.5px; letter-spacing: 3px; text-transform: uppercase; opacity: .45; color: var(--charcoal); text-align: center; }
+  .gallery-placeholder-text.light { color: rgba(255,255,255,.65); }
+
+  /* Mobile gallery */
+  .gallery-mobile { display: none; }
+  .gallery-mob-main { width: 100%; aspect-ratio: 4/3; overflow: hidden; position: relative; border: 1px solid rgba(168,138,97,.15); margin-bottom: 12px; cursor: pointer; }
+  .gallery-mob-main-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; }
+  .gallery-mob-thumbs { display: grid; grid-template-columns: repeat(5,1fr); gap: 6px; }
+  .gallery-mob-thumb { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; cursor: pointer; border: 2px solid transparent; transition: border-color .3s ease; overflow: hidden; }
+  .gallery-mob-thumb.active { border-color: var(--gold); }
+  .gallery-mob-thumb-inner { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 9.5px; letter-spacing: 1px; text-align: center; font-family: 'Cormorant Garamond', serif; }
+
+  /* CTA */
+  .appointment-cta { padding: 120px 5%; background: var(--ivory); text-align: center; position: relative; overflow: hidden; }
+  .cta-bg-lines { position: absolute; inset: 0; pointer-events: none; }
+  .cta-line { position: absolute; background: var(--gold); opacity: .07; }
+  .cta-line-1 { width: 1px; height: 200px; top: 10%; left: 15%; animation: lineFloat 8s ease-in-out infinite; }
+  .cta-line-2 { width: 200px; height: 1px; top: 30%; right: 10%; animation: lineFloat 10s ease-in-out 2s infinite; }
+  .cta-line-3 { width: 1px; height: 150px; bottom: 15%; right: 20%; animation: lineFloat 7s ease-in-out 1s infinite; }
+  .cta-line-4 { width: 120px; height: 1px; bottom: 25%; left: 8%; animation: lineFloat 9s ease-in-out 3s infinite; }
+  @keyframes lineFloat { 0%,100% { opacity: .07; transform: translateY(0); } 50% { opacity: .16; transform: translateY(-10px); } }
+  .cta-content { position: relative; z-index: 2; }
+  .cta-divider { width: 1px; height: 60px; background: linear-gradient(to bottom,transparent,var(--gold),transparent); margin: 0 auto 44px; }
+  .appointment-cta h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(36px,4vw,68px); font-weight: 300; color: var(--black); line-height: 1.1; margin-bottom: 20px; }
+  .appointment-cta h2 em { font-style: italic; color: var(--gold); }
+  .appointment-cta p { font-size: 15.5px; color: var(--text-body); margin-bottom: 44px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.75; }
+  .cta-buttons { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+  .hours-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(168,138,97,.08); border: 1px solid rgba(168,138,97,.25); padding: 8px 16px; border-radius: 2px; font-size: 11.5px; letter-spacing: 2px; color: var(--gold); text-transform: uppercase; margin-bottom: 24px; font-weight: 500; }
+  .hours-dot { width: 6px; height: 6px; border-radius: 50%; background: #4CAF50; animation: blink 2s ease infinite; }
+  @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+  /* MAP */
+  .map-section { width: 100%; height: 420px; display: block; position: relative; }
+  .map-section iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+  /* FOOTER */
+  footer { background: var(--black); color: rgba(255,255,255,.7); padding: 80px 5% 40px; }
+  .footer-top { display: flex; flex-direction: column; gap: 0; padding-bottom: 0; border-bottom: none; margin-bottom: 0; }
+  .footer-brand { display: grid; grid-template-columns: 200px 1fr; gap: 0 60px; align-items: start; padding-bottom: 48px; border-bottom: 1px solid rgba(168,138,97,.12); margin-bottom: 48px; }
+  .footer-brand .footer-social { margin-top: 20px; }
+  .footer-logo { display: flex; align-items: center; margin-bottom: 16px; }
+  .footer-logo img { height: 72px; filter: brightness(0) invert(1); opacity: .9; }
+  .footer-tagline { font-size: 10.5px; letter-spacing: 3.5px; color: rgba(255,255,255,.45); text-transform: uppercase; margin-bottom: 20px; }
+  .footer-desc { font-size: 13.5px; line-height: 1.85; color: rgba(255,255,255,.6); max-width: 260px; }
+  .footer-col h4 { font-size: 10.5px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; font-weight: 500; }
+  .footer-links { list-style: none; }
+  .footer-links li { margin-bottom: 10px; }
+  .footer-links a { font-size: 13.5px; color: rgba(255,255,255,.65); text-decoration: none; letter-spacing: .3px; transition: color .3s ease, padding-left .3s ease; }
+  .footer-links a:hover { color: var(--gold); padding-left: 5px; }
+  .footer-contact-item { display: flex; gap: 10px; margin-bottom: 12px; color: rgba(255,255,255,.65); font-size: 13.5px; color: rgba(255,255,255,.65); line-height: 1.6; }
+  .footer-contact-icon { color: var(--gold); flex-shrink: 0; margin-top: 2px; }
+  .footer-hours { color: rgba(255,255,255,.5); font-size: 12.5px; color: rgba(255,255,255,.35); margin-top: 4px; letter-spacing: .3px; }
+  .footer-social { display: flex; gap: 12px; margin-top: 12px; }
+  .social-btn { width: 36px; height: 36px; border: 1px solid rgba(168,138,97,.25); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: rgba(255,255,255,.6); text-decoration: none; font-size: 13.5px; cursor: none; transition: border-color .3s ease, color .3s ease, transform .3s ease; }
+  .social-btn:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+  .footer-motto { font-size: 10.5px; letter-spacing: 4px; text-transform: uppercase; color: rgba(255,255,255,.2); }
+  .footer-copy { color: rgba(255,255,255,.42); font-size: 11.5px; color: rgba(255,255,255,.25); letter-spacing: .3px; }
+  .footer-gold-line { height: 1px; background: linear-gradient(to right,transparent,var(--gold),transparent); margin-bottom: 36px; opacity: .25; }
+  .footer-credit { font-size: 11.5px; color: rgba(255,255,255,.25); letter-spacing: .3px; }
+  .footer-credit a { color: rgba(168,138,97,.7); text-decoration: none; transition: color .3s ease; }
+  .footer-credit a:hover { color: var(--gold); }
+
+
+  /* DOCTORS SECTION */
+  .doctors-section { padding: 100px 5%; background: var(--ivory); }
+  .doctors-header { text-align: center; margin-bottom: 64px; }
+  .doctors-header h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(32px,3vw,52px); font-weight: 300; color: var(--black); margin-bottom: 12px; }
+  .doctors-header p { font-size: 14.5px; color: var(--text-muted); letter-spacing: .5px; }
+  .doctors-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 48px; max-width: 900px; margin: 0 auto; }
+  .doctor-card { display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .doctor-photo { position: relative; width: 100%; max-width: 340px; aspect-ratio: 3/4; margin-bottom: 32px; }
+  .doctor-photo-inner {
+    width: 100%; height: 100%;
+    background: linear-gradient(160deg, #EFE7DE 0%, #D8D1C8 100%);
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(168,138,97,.2);
+    position: relative; overflow: hidden;
+  }
+  .doctor-photo-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 20px,
+      rgba(168,138,97,.04) 20px,
+      rgba(168,138,97,.04) 21px
+    );
+  }
+  .doctor-photo-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16.5px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(168,138,97,.6);
+    position: relative;
+    z-index: 1;
+    padding: 12px 20px;
+    border: 1px solid rgba(168,138,97,.25);
+  }
+  .doctor-photo-frame {
+    position: absolute;
+    inset: -6px;
+    border: 1px solid rgba(168,138,97,.2);
+    pointer-events: none;
+    transition: border-color .4s ease;
+  }
+  .doctor-card:hover .doctor-photo-frame { border-color: rgba(168,138,97,.5); }
+  .doctor-info { width: 100%; }
+  .doctor-name { font-family: 'Cormorant Garamond', serif; font-size: 26.5px; font-weight: 400; color: var(--black); letter-spacing: .5px; margin-bottom: 4px; }
+  .doctor-credentials { font-size: 12.5px; letter-spacing: 2.5px; color: var(--gold); text-transform: uppercase; font-weight: 500; margin-bottom: 6px; }
+  .doctor-specialty { color: var(--charcoal); font-size: 13.5px; color: var(--text-muted); letter-spacing: .5px; margin-bottom: 20px; }
+  .doctor-divider { width: 40px; height: 1px; background: var(--gold); margin: 0 auto 20px; opacity: .5; }
+  .doctor-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  .doctor-tag { font-size: 10.5px; letter-spacing: 1.5px; text-transform: uppercase; border: 1px solid rgba(168,138,97,.25); color: var(--text-muted); padding: 5px 12px; transition: border-color .3s ease, color .3s ease; }
+  .doctor-tag:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* RESPONSIVE */
+  @media (max-width: 1100px) {
+    .pillars-grid { grid-template-columns: repeat(2,1fr); }
+    .tech-grid { grid-template-columns: repeat(2,1fr); }
+  }
+  @media (max-width: 900px) {
+    .doctors-grid { grid-template-columns: 1fr; gap: 48px; max-width: 400px; }
+    .doctor-photo { max-width: 280px; margin-left: auto; margin-right: auto; }
+    .hero-content { padding: 140px 6% 80px; }
+    .about { grid-template-columns: 1fr; }
+    .about-image { min-height: 360px; order: -1; }
+    .services-grid { grid-template-columns: repeat(2,1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 36px; }
+    .nav-links { display: none; }
+    .gallery-grid { display: none; }
+    .gallery-mobile { display: block; }
+    .testimonials-track-outer { display: none; }
+    .testimonials-mobile { display: block; }
+  }
+  @media (max-width: 640px) {
+    .services-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .pillars-grid { grid-template-columns: 1fr; }
+    .tech-grid { grid-template-columns: 1fr; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .map-section { height: 320px; }
+  }
+
+  /* ── TECHNOLOGY: center on mobile ── */
+  @media (max-width: 900px) {
+    .tech-item { text-align: center; }
+    .tech-item-num { text-align: center; }
+    .tech-icon { display: flex; justify-content: center; }
+    .tech-title { text-align: center; }
+    .tech-desc { text-align: center; }
+    .tech-item::before { display: none; }
+  }
+
+  /* ── HERO: push text down on mobile ── */
+  @media (max-width: 768px) {
+    .hero-content {
+      padding: 240px 6% 48px;
+      justify-content: flex-end;
+    }
+    .hero { min-height: 100svh; }
+  }
+  @media (max-width: 480px) {
+    .hero-content {
+      padding: 280px 5% 44px;
+      justify-content: flex-end;
+    }
+  }
+
+  /* ── FOOTER: mobile redesign ── */
+  @media (max-width: 768px) {
+    footer { padding: 64px 6% 40px; }
+    .footer-top {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+      margin-bottom: 0;
+    }
+
+    /* Brand block — centred */
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(168,138,97,.12);
+      margin-bottom: 36px;
+    }
+    .footer-brand .footer-logo { justify-content: center; }
+    .footer-brand .footer-desc { max-width: 280px; text-align: center; }
+    .footer-brand .footer-social { justify-content: center; }
+    .footer-brand .footer-tagline { text-align: center; }
+
+    /* Columns: 2-col grid */
+    .footer-cols-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px 20px;
+      padding-bottom: 36px;
+      border-bottom: 1px solid rgba(168,138,97,.12);
+      margin-bottom: 36px;
+    }
+    .footer-col h4 { font-size: 10.5px; margin-bottom: 14px; }
+    .footer-links a { font-size: 13px; }
+    .footer-contact-item { font-size: 12.5px; }
+
+    /* Bottom bar: stacked centre */
+    .footer-bottom {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 8px;
+    }
+    .footer-motto { font-size: 10px; }
+    .footer-credit { font-size: 11px; }
+    .footer-copy { font-size: 11px; }
+  }
+
+
+  /* Footer cols-grid desktop override */
+  @media (min-width: 769px) {
+    .footer-brand {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 0 56px;
+      align-items: start;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(168,138,97,.12);
+      margin-bottom: 48px;
+    }
+    .footer-cols-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0 40px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(168,138,97,.12);
+      margin-bottom: 40px;
+    }
+    .footer-cols-grid .footer-col:last-child {
+      grid-column: auto;
+    }
+    .footer-cols-grid .footer-col[style*="span 2"] {
+      grid-column: span 2;
+    }
+  }
+
+
+  /* Hero wider on desktop */
+  @media (min-width: 1024px) {
+    .hero-content { max-width: 760px; }
+    .hero-heading { font-size: clamp(52px, 6vw, 90px); }
+    .hero-body { max-width: 520px; font-size: 16.5px; }
+  }
+  @media (min-width: 1400px) {
+    .hero-content { max-width: 860px; }
+    .hero-body { max-width: 580px; }
+  }
+
+
+  /* ── FLOATING SOCIAL BUTTONS ── */
+  .floating-socials {
+    position: fixed;
+    bottom: 28px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 990;
+  }
+  .float-btn {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(0,0,0,.18);
+    transition: transform .3s ease, box-shadow .3s ease;
+    cursor: pointer;
+  }
+  .float-btn:hover {
+    transform: translateY(-3px) scale(1.08);
+    box-shadow: 0 8px 28px rgba(0,0,0,.25);
+  }
+  .float-btn-wa  { background: #25D366; }
+  .float-btn-ig  { background: radial-gradient(circle at 30% 110%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+  .float-btn svg { width: 26px; height: 26px; fill: #fff; }
+  .float-tooltip {
+    position: absolute;
+    right: 62px;
+    background: rgba(27,27,27,.88);
+    color: #fff;
+    font-size: 11.5px;
+    letter-spacing: .5px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+  }
+  .float-btn:hover .float-tooltip { opacity: 1; }
+
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">
+    <img src="logo.png" alt="Vogue Dental & Cosmetic Lounge" id="navLogoImg">
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#technology">Technology</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="tel:+97145776784" class="btn-nav">Book Appointment</a>
+  </div>
+</nav>
+
+<!-- HERO — full width -->
+<section class="hero" id="home">
+  <div class="hero-image">
+    <img src="clinic.png" alt="Vogue Dental & Cosmetic Lounge Reception Dubai">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-content">
+    <h1 class="hero-heading">
+      Expert<br>
+      <em>Dental &</em><br>
+      Cosmetic<br>
+      Care in Dubai
+    </h1>
+    <p class="hero-body">
+      At Vogue Dental & Cosmetic Lounge DMCC, we transform smiles through clinical expertise, advanced technology, and genuinely personalized care.
+    </p>
+    <div class="hero-ctas">
+      <a href="tel:+97145776784" class="btn-primary">Book Your Appointment</a>
+      <a href="#about" class="btn-text">
+        <span class="btn-text-line"></span>
+        Discover the experience
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PILLARS -->
+<section class="pillars">
+  <div class="pillars-header reveal">
+    <div class="section-eyebrow">Our Promise</div>
+    <h2>Four Pillars of <em style="font-style:italic;color:var(--gold)">Care</em></h2>
+  </div>
+  <div class="pillars-grid">
+    <div class="pillar-card reveal">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 56 56" fill="none">
+          <path d="M28 8C18 8 10 18 10 28C10 38 18 48 28 48C38 48 46 38 46 28" stroke="#A88A61" stroke-width="1" stroke-linecap="round"/>
+          <path d="M28 16V28L36 34" stroke="#A88A61" stroke-width="1" stroke-linecap="round"/>
+          <circle cx="44" cy="14" r="6" stroke="#A88A61" stroke-width="1"/>
+          <path d="M41 14L43.5 16.5L47 11" stroke="#A88A61" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="pillar-title">Dental Excellence</div>
+      <div class="pillar-desc">Evidence-based clinical standards with close attention to every detail of your treatment.</div>
+    </div>
+    <div class="pillar-card reveal reveal-delay-1">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 56 56" fill="none">
+          <ellipse cx="28" cy="32" rx="14" ry="10" stroke="#A88A61" stroke-width="1"/>
+          <path d="M18 26C14 22 14 14 22 12C26 11 30 13 32 16" stroke="#A88A61" stroke-width="1" stroke-linecap="round"/>
+          <path d="M38 26C42 22 42 14 34 12C30 11 26 13 24 16" stroke="#A88A61" stroke-width="1" stroke-linecap="round"/>
+          <path d="M22 34C23 38 25 40 28 40C31 40 33 38 34 34" stroke="#A88A61" stroke-width=".8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="pillar-title">Cosmetic Care</div>
+      <div class="pillar-desc">Skill-led cosmetic treatments tailored to give you a natural, confident smile.</div>
+    </div>
+    <div class="pillar-card reveal reveal-delay-2">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 56 56" fill="none">
+          <rect x="10" y="16" width="36" height="28" rx="2" stroke="#A88A61" stroke-width="1"/>
+          <path d="M10 24H46" stroke="#A88A61" stroke-width=".8"/>
+          <circle cx="20" cy="20" r="2" stroke="#A88A61" stroke-width=".8"/>
+          <circle cx="28" cy="20" r="2" stroke="#A88A61" stroke-width=".8"/>
+          <path d="M18 34H38M18 38H30" stroke="#A88A61" stroke-width=".8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="pillar-title">Comfortable Experience</div>
+      <div class="pillar-desc">A calm, welcoming environment where your comfort and privacy are always our priority.</div>
+    </div>
+    <div class="pillar-card reveal reveal-delay-3">
+      <div class="pillar-icon">
+        <svg viewBox="0 0 56 56" fill="none">
+          <rect x="12" y="10" width="32" height="36" rx="2" stroke="#A88A61" stroke-width="1"/>
+          <path d="M12 20H44" stroke="#A88A61" stroke-width=".8"/>
+          <rect x="19" y="8" width="4" height="6" rx="1" stroke="#A88A61" stroke-width=".8"/>
+          <rect x="33" y="8" width="4" height="6" rx="1" stroke="#A88A61" stroke-width=".8"/>
+          <path d="M19 30H37M19 36H30" stroke="#A88A61" stroke-width=".8" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="pillar-title">Flexible Booking</div>
+      <div class="pillar-desc">Six days a week, morning to evening — convenient appointments that work around your schedule.</div>
+    </div>
+  </div>
+</section>
+
+<!-- DUBAI STATEMENT -->
+<section class="dubai-statement">
+  <div class="dubai-bg"></div>
+  <div class="dubai-particles" id="particles"></div>
+  <div class="dubai-content">
+    <div class="dubai-divider"></div>
+    <h2 class="reveal">Transform Your Smile.<em>Transform Your Confidence.</em></h2>
+    <p class="reveal">Where expertise meets exceptional care.</p>
+    <a href="#services" class="btn-outline-gold reveal">Discover More</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-image">
+    <img src="G3.PNG" alt="Vogue Dental Cosmetic Lounge" style="width:100%;height:100%;min-height:600px;object-fit:cover;object-position:center;display:block;" />
+    <div class="about-image-accent"></div>
+  </div>
+  <div class="about-content">
+    <div class="section-eyebrow reveal">About Vogue</div>
+    <h2 class="reveal">Beyond Dentistry.<br><em>It's About You.</em></h2>
+    <p class="about-body reveal">
+      Vogue Dental & Cosmetic Lounge is a trusted dental destination in Dubai where clinical excellence meets genuine patient care. Located in the Red Diamond Building, JLT, we offer a personalized approach — combining the latest in dental technology with a calm, welcoming environment designed to put you at ease.
+    </p>
+    <ul class="about-checklist reveal">
+      <li><span class="check-icon"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,7 8,3" stroke="#A88A61" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>International clinical standards</li>
+      <li><span class="check-icon"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,7 8,3" stroke="#A88A61" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Personalized treatment plans</li>
+      <li><span class="check-icon"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,7 8,3" stroke="#A88A61" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Calm, comfortable environment</li>
+      <li><span class="check-icon"><svg viewBox="0 0 10 10" fill="none"><polyline points="2,5 4,7 8,3" stroke="#A88A61" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Highly experienced specialist team</li>
+    </ul>
+    <a href="#contact" class="btn-secondary reveal">Learn More</a>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header reveal">
+    <div class="section-eyebrow">What We Offer</div>
+    <h2>Our Signature <em style="font-style:italic;color:var(--gold)">Services</em></h2>
+    <p>Each treatment is tailored to your needs — delivered with precision and genuine care.</p>
+  </div>
+  <div class="services-grid">
+
+    <div class="service-card reveal">
+      <div class="service-img">
+        <div class="service-img-bg svc-bg-1">
+          <img src="icon1.png" alt="General Dentistry" style="width:90px;height:90px;object-fit:contain;opacity:.85;" />
+          <div class="service-img-overlay"></div>
+        </div>
+      </div>
+      <div class="service-body">
+        <div class="service-num">01</div>
+        <div class="service-title">General Dentistry</div>
+        <div class="service-desc">Comprehensive care for lifelong dental health — cleanings, fillings, root canals, and preventative treatments delivered with precision.</div>
+        <a href="#contact" class="service-link">Discover <span class="service-link-arrow"></span></a>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-img">
+        <div class="service-img-bg svc-bg-2">
+          <img src="icon2.png" alt="Cosmetic Dentistry" style="width:90px;height:90px;object-fit:contain;opacity:.85;" />
+          <div class="service-img-overlay"></div>
+        </div>
+      </div>
+      <div class="service-body">
+        <div class="service-num">02</div>
+        <div class="service-title">Cosmetic Dentistry</div>
+        <div class="service-desc">Veneers, bonding, contouring — aesthetic refinements that perfect the proportions of your smile.</div>
+        <a href="#contact" class="service-link">Discover <span class="service-link-arrow"></span></a>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-img">
+        <div class="service-img-bg svc-bg-3">
+          <img src="icon3.png" alt="Smile Makeovers" style="width:90px;height:90px;object-fit:contain;opacity:.85;" />
+          <div class="service-img-overlay"></div>
+        </div>
+      </div>
+      <div class="service-body">
+        <div class="service-num">03</div>
+        <div class="service-title">Smile Makeovers</div>
+        <div class="service-desc">A comprehensive smile transformation — combining multiple treatments into one coordinated care plan.</div>
+        <a href="#contact" class="service-link">Discover <span class="service-link-arrow"></span></a>
+      </div>
+    </div>
+
+    <div class="service-card reveal">
+      <div class="service-img">
+        <div class="service-img-bg svc-bg-4">
+          <img src="icon4.png" alt="Teeth Whitening" style="width:90px;height:90px;object-fit:contain;opacity:.85;" />
+          <div class="service-img-overlay"></div>
+        </div>
+      </div>
+      <div class="service-body">
+        <div class="service-num">04</div>
+        <div class="service-title">Teeth Whitening</div>
+        <div class="service-desc">Advanced professional whitening systems that deliver luminous, lasting results in a single appointment.</div>
+        <a href="#contact" class="service-link">Discover <span class="service-link-arrow"></span></a>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-1">
+      <div class="service-img">
+        <div class="service-img-bg svc-bg-5">
+          <img src="icon5.png" alt="Dental Implants" style="width:90px;height:90px;object-fit:contain;opacity:.85;" />
+          <div class="service-img-overlay"></div>
+        </div>
+      </div>
+      <div class="service-body">
+        <div class="service-num">05</div>
+        <div class="service-title">Dental Implants</div>
+        <div class="service-desc">Permanent, natural-looking tooth replacement that restores both function and the full beauty of your smile.</div>
+        <a href="#contact" class="service-link">Discover <span class="service-link-arrow"></span></a>
+      </div>
+    </div>
+
+    <div class="service-card reveal reveal-delay-2">
+      <div class="service-img">
+        <div class="service-img-bg svc-bg-6">
+          <img src="icon6.png" alt="Facial Aesthetics" style="width:90px;height:90px;object-fit:contain;opacity:.85;" />
+          <div class="service-img-overlay"></div>
+        </div>
+      </div>
+      <div class="service-body">
+        <div class="service-num">06</div>
+        <div class="service-title">Facial Aesthetics</div>
+        <div class="service-desc">Targeted aesthetic treatments that complement your smile and enhance your natural appearance.</div>
+        <a href="#contact" class="service-link">Discover <span class="service-link-arrow"></span></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section class="technology" id="technology">
+  <div class="tech-bg-accent"></div>
+  <div class="tech-header reveal">
+    <div class="section-eyebrow" style="color:rgba(168,138,97,.75);">Innovation</div>
+    <h2>Advanced <em style="font-style:italic;color:var(--gold-light)">Technology</em></h2>
+    <p>Precision instruments. Accurate diagnosis. Comfortable care.</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-item reveal">
+      <div class="tech-item-num">01</div>
+      <div class="tech-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><rect x="4" y="10" width="32" height="22" rx="2" stroke="#A88A61" stroke-width=".8"/><path d="M8 16H32" stroke="#A88A61" stroke-width=".6"/><circle cx="12" cy="13" r="1.5" stroke="#A88A61" stroke-width=".6"/><path d="M10 22L17 27L24 20L30 25" stroke="#A88A61" stroke-width=".8" stroke-linecap="round" stroke-linejoin="round"/><path d="M14 36H26M20 32V36" stroke="#A88A61" stroke-width=".8" stroke-linecap="round"/></svg></div>
+      <div class="tech-title">Digital Smile Design</div>
+      <div class="tech-desc">Preview your expected results before treatment begins — planned collaboratively with your specialist.</div>
+    </div>
+    <div class="tech-item reveal reveal-delay-1">
+      <div class="tech-item-num">02</div>
+      <div class="tech-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="14" stroke="#A88A61" stroke-width=".8"/><circle cx="20" cy="20" r="8" stroke="#A88A61" stroke-width=".6" stroke-dasharray="2 2"/><path d="M20 6V10M20 30V34M6 20H10M30 20H34" stroke="#A88A61" stroke-width=".8" stroke-linecap="round"/><circle cx="20" cy="20" r="2" stroke="#A88A61" stroke-width=".6"/></svg></div>
+      <div class="tech-title">3D Imaging</div>
+      <div class="tech-desc">Full-dimensional scanning that reveals every detail, enabling treatment plans of exceptional precision.</div>
+    </div>
+    <div class="tech-item reveal reveal-delay-2">
+      <div class="tech-item-num">03</div>
+      <div class="tech-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M8 20H14L17 10L22 30L26 16L29 20H32" stroke="#A88A61" stroke-width=".8" stroke-linecap="round" stroke-linejoin="round"/><rect x="4" y="6" width="32" height="28" rx="2" stroke="#A88A61" stroke-width=".6"/></svg></div>
+      <div class="tech-title">Advanced Diagnostics</div>
+      <div class="tech-desc">State-of-the-art diagnostic tools that identify, analyse, and inform every treatment decision.</div>
+    </div>
+    <div class="tech-item reveal reveal-delay-3">
+      <div class="tech-item-num">04</div>
+      <div class="tech-icon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M20 8C14 8 10 12 10 16C10 20 13 22 16 24C18 25 20 26 20 28C20 26 22 25 24 24C27 22 30 20 30 16C30 12 26 8 20 8Z" stroke="#A88A61" stroke-width=".8"/><path d="M17 28V34H23V28M15 34H25" stroke="#A88A61" stroke-width=".6" stroke-linecap="round"/></svg></div>
+      <div class="tech-title">Pain-Free Treatments</div>
+      <div class="tech-desc">The finest anaesthetic techniques and patient comfort protocols — so you feel only calm.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="testimonials-header">
+    <div class="google-badge reveal"><span class="stars">★★★★★</span><div><div class="google-text" style="font-weight:500;color:var(--black);font-size:13px;">Highly Rated on Google</div><div class="google-text">Trusted by patients across Dubai</div></div></div>
+    <div class="section-eyebrow reveal">Patient Stories</div>
+    <h2 class="reveal">Words from Our <em style="font-style:italic;color:var(--gold)">Patients</em></h2>
+  </div>
+
+  <!-- DESKTOP: auto-scroll -->
+  <div class="testimonials-track-outer">
+    <div class="testimonials-track" id="testimonialsTrack">
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">Walking into Vogue Dental immediately put me at ease — not what I expected from a dental clinic. The care and attention to detail is unmatched in Dubai.</div><div class="testimonial-footer"><div class="testimonial-avatar">SM</div><div><div class="testimonial-name">Sarah M.</div><div class="testimonial-stars">★★★★★</div><div class="testimonial-meta">Dubai Marina Resident</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">My smile makeover journey was handled with such artistry and care. The results are absolutely stunning — I can't stop smiling. Truly world-class.</div><div class="testimonial-footer"><div class="testimonial-avatar">AK</div><div><div class="testimonial-name">Ahmed K.</div><div class="testimonial-stars">★★★★★</div><div class="testimonial-meta">JLT Resident</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">I had been anxious about dental visits my whole life. Vogue Dental changed everything. The ambience, the team, the technology — I felt completely at ease.</div><div class="testimonial-footer"><div class="testimonial-avatar">LR</div><div><div class="testimonial-name">Laura R.</div><div class="testimonial-stars">★★★★★</div><div class="testimonial-meta">Expat, Business Bay</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">The veneers are perfection. My smile looks natural, not overdone. The team understood exactly the aesthetic I wanted and delivered beyond my expectations.</div><div class="testimonial-footer"><div class="testimonial-avatar">NF</div><div><div class="testimonial-name">Noor F.</div><div class="testimonial-stars">★★★★★</div><div class="testimonial-meta">Downtown Dubai</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">From the moment you arrive to the moment you leave, every detail has been considered. Vogue Dental truly redefines what a dental experience should feel like.</div><div class="testimonial-footer"><div class="testimonial-avatar">JT</div><div><div class="testimonial-name">James T.</div><div class="testimonial-stars">★★★★★</div><div class="testimonial-meta">DIFC Professional</div></div></div></div>
+      <!-- duplicates for loop -->
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">Walking into Vogue Dental immediately put me at ease — not what I expected from a dental clinic. The care and attention to detail is unmatched in Dubai.</div><div class="testimonial-footer"><div class="testimonial-avatar">SM</div><div><div class="testimonial-name">Sarah M.</div><div class="testimonial-stars">★★★★★</div><div class="testimonial-meta">Dubai Marina Resident</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">My smile makeover journey was handled with such artistry and care. The results are absolutely stunning — I can't stop smiling. Truly world-class.</div><div class="testimonial-footer"><div class="testimonial-avatar">AK</div><div><div class="testimonial-name">Ahmed K.</div><div class="testimonial-stars">★★★★★</div><div class="testimonial-meta">JLT Resident</div></div></div></div>
+      <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">I had been anxious about dental visits my whole life. Vogue Dental changed everything. The ambience, the team, the technology — I felt completely at ease.</div><div class="testimonial-footer"><div class="testimonial-avatar">LR</div><div><div class="testimonial-name">Laura R.</div><div class="testimonial-stars">★★★★★</div><div class="testimonial-meta">Expat, Business Bay</div></div></div></div>
+    </div>
+  </div>
+
+  <!-- MOBILE: single card with prev/next -->
+  <div class="testimonials-mobile">
+    <div class="mob-carousel-wrap">
+      <div class="mob-carousel-track" id="mobTestimonialTrack">
+        <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">Walking into Vogue Dental immediately put me at ease — not what I expected from a dental clinic. The care and attention to detail is unmatched in Dubai.</div><div class="testimonial-footer"><div class="testimonial-avatar">SM</div><div><div class="testimonial-name">Sarah M.</div><div class="testimonial-stars">★★★★★</div><div class="testimonial-meta">Dubai Marina Resident</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">My smile makeover journey was handled with such artistry and care. The results are absolutely stunning — I can't stop smiling. Truly world-class.</div><div class="testimonial-footer"><div class="testimonial-avatar">AK</div><div><div class="testimonial-name">Ahmed K.</div><div class="testimonial-stars">★★★★★</div><div class="testimonial-meta">JLT Resident</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">I had been anxious about dental visits my whole life. Vogue Dental changed everything. The ambience, the team, the technology — I felt completely at ease.</div><div class="testimonial-footer"><div class="testimonial-avatar">LR</div><div><div class="testimonial-name">Laura R.</div><div class="testimonial-stars">★★★★★</div><div class="testimonial-meta">Expat, Business Bay</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">The veneers are perfection. My smile looks natural, not overdone. The team understood exactly the aesthetic I wanted and delivered beyond my expectations.</div><div class="testimonial-footer"><div class="testimonial-avatar">NF</div><div><div class="testimonial-name">Noor F.</div><div class="testimonial-stars">★★★★★</div><div class="testimonial-meta">Downtown Dubai</div></div></div></div>
+        <div class="testimonial-card"><div class="testimonial-quote">"</div><div class="testimonial-text">From the moment you arrive to the moment you leave, every detail has been considered. Vogue Dental truly redefines what a dental experience should feel like.</div><div class="testimonial-footer"><div class="testimonial-avatar">JT</div><div><div class="testimonial-name">James T.</div><div class="testimonial-stars">★★★★★</div><div class="testimonial-meta">DIFC Professional</div></div></div></div>
+      </div>
+    </div>
+    <div class="mob-carousel-dots" id="mobDots"></div>
+    <div class="mob-carousel-nav">
+      <button class="mob-nav-btn" id="mobPrev" aria-label="Previous"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="mob-nav-btn" id="mobNext" aria-label="Next"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY (Desktop) -->
+<section class="gallery" id="gallery">
+  <div class="gallery-header reveal">
+    <div class="section-eyebrow">Our World</div>
+    <h2>Inside the <em style="font-style:italic;color:var(--gold)">Clinic</em></h2>
+  </div>
+
+  <!-- DESKTOP GALLERY GRID -->
+  <div class="gallery-grid">
+
+    <div class="gallery-item reveal">
+      <div class="gallery-item-inner" style="min-height:420px;">
+        <img src="G1.PNG" alt="Reception & Lounge" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-frame"></div>
+          <div class="gallery-plus">+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal reveal-delay-1">
+      <div class="gallery-item-inner" style="min-height:200px;">
+        <img src="G2.PNG" alt="Treatment Suite" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-frame"></div>
+          <div class="gallery-plus">+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal reveal-delay-2">
+      <div class="gallery-item-inner" style="min-height:200px;">
+        <img src="G3.PNG" alt="Technology Lab" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-frame"></div>
+          <div class="gallery-plus">+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal">
+      <div class="gallery-item-inner" style="min-height:220px;">
+        <img src="G4.PNG" alt="Clinic Details" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-frame"></div>
+          <div class="gallery-plus">+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal reveal-delay-1">
+      <div class="gallery-item-inner" style="min-height:200px;">
+        <img src="G2.PNG" alt="Consultation Room" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-frame"></div>
+          <div class="gallery-plus">+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal reveal-delay-2">
+      <div class="gallery-item-inner" style="min-height:200px;">
+        <img src="G1.PNG" alt="Lifestyle Moments" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-frame"></div>
+          <div class="gallery-plus">+</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery-item reveal reveal-delay-3">
+      <div class="gallery-item-inner" style="min-height:200px;">
+        <img src="clinic.png" alt="Vogue Dental Clinic" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;position:absolute;inset:0;" />
+        <div class="gallery-item-overlay">
+          <div class="gallery-item-frame"></div>
+          <div class="gallery-plus">+</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- MOBILE GALLERY -->
+  <div class="gallery-mobile">
+    <div class="gallery-mob-main" id="galleryMobMain">
+      <div class="gallery-mob-main-inner" id="galleryMobMainInner" style="position:relative;">
+        <img src="G1.PNG" alt="Reception & Lounge" style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;" />
+      </div>
+    </div>
+    <div class="gallery-mob-thumbs" id="galleryMobThumbs"></div>
+  </div>
+</section>
+
+<!-- DOCTORS SECTION -->
+<section class="doctors-section" id="team">
+  <div class="doctors-header reveal">
+    <div class="section-eyebrow">Meet the Team</div>
+    <h2>Our <em style="font-style:italic;color:var(--gold)">Specialists</em></h2>
+    <p>Qualified, experienced clinicians committed to your dental health.</p>
+  </div>
+  <div class="doctors-grid">
+
+    <div class="doctor-card reveal">
+      <div class="doctor-photo">
+        <div class="doctor-photo-inner">
+          <div class="doctor-photo-label">Your Photo</div>
+        </div>
+        <div class="doctor-photo-frame"></div>
+      </div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. Arif Kandoth</div>
+        <div class="doctor-credentials">BDS, MDS</div>
+        <div class="doctor-specialty">Prosthodontist &amp; General Dentist</div>
+        <div class="doctor-divider"></div>
+        <div class="doctor-tags">
+          <span class="doctor-tag">Smile Design</span>
+          <span class="doctor-tag">Veneers</span>
+          <span class="doctor-tag">Full Mouth Rehab</span>
+          <span class="doctor-tag">TMJ Treatments</span>
+          <span class="doctor-tag">Crowns &amp; Bridges</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="doctor-card reveal reveal-delay-2">
+      <div class="doctor-photo">
+        <div class="doctor-photo-inner">
+          <div class="doctor-photo-label">Your Photo</div>
+        </div>
+        <div class="doctor-photo-frame"></div>
+      </div>
+      <div class="doctor-info">
+        <div class="doctor-name">Dr. Devu N Shaji</div>
+        <div class="doctor-credentials">BDS</div>
+        <div class="doctor-specialty">General Dentist</div>
+        <div class="doctor-divider"></div>
+        <div class="doctor-tags">
+          <span class="doctor-tag">General Dentistry</span>
+          <span class="doctor-tag">Cosmetic Treatments</span>
+          <span class="doctor-tag">Root Canal</span>
+          <span class="doctor-tag">Extractions</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="appointment-cta" id="contact">
+  <div class="cta-bg-lines"><div class="cta-line cta-line-1"></div><div class="cta-line cta-line-2"></div><div class="cta-line cta-line-3"></div><div class="cta-line cta-line-4"></div></div>
+  <div class="cta-content">
+    <div class="cta-divider reveal"></div>
+    <div class="section-eyebrow reveal">Begin Your Journey</div>
+    <h2 class="reveal">Your Smile Journey<br><em>Starts Here.</em></h2>
+    <p class="reveal">Schedule your consultation with our experienced team. We're ready to help you achieve the smile you deserve.</p>
+    <div class="hours-badge reveal"><span class="hours-dot"></span>Open Mon–Sat · 9am – 9pm</div>
+    <div class="cta-buttons reveal">
+      <a href="tel:+97145776784" class="btn-primary" style="padding:18px 44px;font-size:11px;">Book Appointment</a>
+      <a href="tel:+97145776784" class="btn-secondary" style="padding:18px 36px;font-size:11px;">+971 4 577 6784</a>
+    </div>
+    <div style="margin-top:44px;font-size:13px;color:var(--text-muted);letter-spacing:.5px;" class="reveal">
+      Red Diamond Building, 108A · JLT · Jumeirah Lakes Towers · Dubai, UAE
+    </div>
+  </div>
+</section>
+
+<!-- MAP — edge to edge -->
+<div class="map-section">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3614.015!2d55.1418!3d25.0667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f6d4c00000000%3A0x1111111111111111!2sVogue+Dental+%26+Cosmetic+Lounge+DMCC!5e0!3m2!1sen!2sae!4v1699999999999!5m2!1sen!2sae" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Vogue Dental & Cosmetic Lounge DMCC Location — Red Diamond Building, JLT, Dubai"></iframe>
+</div>
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="footer-top">
+
+    <!-- BRAND -->
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="logo.png" alt="Vogue Dental & Cosmetic Lounge" onerror="this.style.display='none'">
+      </div>
+      <div class="footer-tagline">Smile. Confidence. Transformed.</div>
+      <div class="footer-desc">A trusted dental and cosmetic clinic in Dubai — where expertise, technology, and patient care come together.</div>
+      <div class="footer-social">
+        <a href="https://www.instagram.com/vogueclinics/" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+        </a>
+        <a href="#" class="social-btn" title="Facebook">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="https://wa.me/97145776784" target="_blank" rel="noopener" class="social-btn" title="WhatsApp">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- COLUMNS GRID -->
+    <div class="footer-cols-grid">
+
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul class="footer-links">
+          <li><a href="#services">General Dentistry</a></li>
+          <li><a href="#services">Cosmetic Dentistry</a></li>
+          <li><a href="#services">Smile Makeovers</a></li>
+          <li><a href="#services">Teeth Whitening</a></li>
+          <li><a href="#services">Dental Implants</a></li>
+          <li><a href="#services">Facial Aesthetics</a></li>
+          <li><a href="#services">Veneers</a></li>
+          <li><a href="#services">Full Mouth Rehab</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul class="footer-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#technology">Technology</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#contact">Book Appointment</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col" style="grid-column: span 2;">
+        <h4>Visit Us</h4>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 24px;">
+          <div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <span>Red Diamond Building, 108A, JLT, Jumeirah Lakes Towers, Dubai, UAE</span>
+            </div>
+            <div class="footer-contact-item">
+              <span class="footer-contact-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.92 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.92 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+              <a href="tel:+97145776784" style="color:inherit;text-decoration:none;">+971 4 577 6784</a>
+            </div>
+          </div>
+          <div>
+            <div class="footer-contact-item" style="flex-direction:column;gap:4px;">
+              <span style="font-size:10.5px;letter-spacing:2px;color:var(--gold);text-transform:uppercase;margin-bottom:6px;font-weight:500;">Hours</span>
+              <div class="footer-hours">Mon – Sat: 9:00 am – 9:00 pm</div>
+              <div class="footer-hours">Sunday: Closed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end footer-cols-grid -->
+
+  </div><!-- end footer-top -->
+
+  <div class="footer-gold-line"></div>
+
+  <div class="footer-bottom">
+    <div class="footer-motto">Smile. Confidence. Transformed.</div>
+    <div class="footer-credit">Designed &amp; Developed by <a href="https://2swan.in" target="_blank" rel="noopener">2 Swan</a></div>
+    <div class="footer-copy">&copy; 2026 Vogue Dental &amp; Cosmetic Lounge DMCC. All rights reserved.</div>
+  </div>
+
+</footer>
+
+
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+
+document.addEventListener('mousemove', function(e) {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+  cursor.style.left = mouseX + 'px';
+  cursor.style.top = mouseY + 'px';
+});
+
+(function animateRing() {
+  ringX += (mouseX - ringX) * 0.12;
+  ringY += (mouseY - ringY) * 0.12;
+  cursorRing.style.left = ringX + 'px';
+  cursorRing.style.top = ringY + 'px';
+  requestAnimationFrame(animateRing);
+})();
+
+var hoverEls = document.querySelectorAll('a,button,.pillar-card,.service-card,.gallery-item,.tech-item,.mob-nav-btn,.gallery-mob-thumb');
+hoverEls.forEach(function(el) {
+  el.addEventListener('mouseenter', function() {
+    cursorRing.classList.add('cursor-hover');
+    cursor.classList.add('cursor-dot-hover');
+  });
+  el.addEventListener('mouseleave', function() {
+    cursorRing.classList.remove('cursor-hover');
+    cursor.classList.remove('cursor-dot-hover');
+  });
+});
+
+// NAV SCROLL + logo fix
+var nav = document.getElementById('mainNav');
+var logoImg = document.getElementById('navLogoImg');
+
+function updateNav() {
+  if (window.scrollY > 60) {
+    nav.classList.add('scrolled');
+  } else {
+    nav.classList.remove('scrolled');
+  }
+}
+window.addEventListener('scroll', updateNav);
+updateNav();
+
+// Force logo load immediately
+if (logoImg) { logoImg.src = 'logo.png'; }
+
+// SCROLL REVEAL
+var revealObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal').forEach(function(el) { revealObserver.observe(el); });
+
+// PARTICLES
+var pc = document.getElementById('particles');
+if (pc) {
+  for (var i = 0; i < 28; i++) {
+    var p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = (Math.random() * 100) + '%';
+    p.style.width = (Math.random() * 2 + 1) + 'px';
+    p.style.height = p.style.width;
+    p.style.animationDuration = (Math.random() * 12 + 8) + 's';
+    p.style.animationDelay = (Math.random() * 10) + 's';
+    pc.appendChild(p);
+  }
+}
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// HERO PARALLAX
+document.addEventListener('mousemove', function(e) {
+  var x = (e.clientX / window.innerWidth - 0.5) * 6;
+  var y = (e.clientY / window.innerHeight - 0.5) * 6;
+  var img = document.querySelector('.hero-image img');
+  if (img) { img.style.transform = 'scale(1.06) translate(' + (x * 0.25) + 'px,' + (y * 0.25) + 'px)'; }
+});
+
+// MOBILE TESTIMONIALS CAROUSEL
+var mobTrack = document.getElementById('mobTestimonialTrack');
+var mobDotsContainer = document.getElementById('mobDots');
+var mobPrevBtn = document.getElementById('mobPrev');
+var mobNextBtn = document.getElementById('mobNext');
+var mobCards = mobTrack ? Array.from(mobTrack.querySelectorAll('.testimonial-card')) : [];
+var mobIdx = 0;
+var mobAutoTimer = null;
+
+if (mobCards.length > 0 && mobDotsContainer) {
+  mobCards.forEach(function(_, i) {
+    var dot = document.createElement('div');
+    dot.className = 'mob-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', function() { goMob(i); });
+    mobDotsContainer.appendChild(dot);
+  });
+
+  function goMob(idx) {
+    mobIdx = ((idx % mobCards.length) + mobCards.length) % mobCards.length;
+    mobTrack.style.transform = 'translateX(-' + (mobIdx * 100) + '%)';
+    document.querySelectorAll('.mob-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === mobIdx);
+    });
+    clearInterval(mobAutoTimer);
+    mobAutoTimer = setInterval(function() { goMob(mobIdx + 1); }, 4500);
+  }
+
+  if (mobPrevBtn) { mobPrevBtn.addEventListener('click', function() { goMob(mobIdx - 1); }); }
+  if (mobNextBtn) { mobNextBtn.addEventListener('click', function() { goMob(mobIdx + 1); }); }
+  mobAutoTimer = setInterval(function() { goMob(mobIdx + 1); }, 4500);
+}
+
+// MOBILE GALLERY
+var galleryData = [
+  { label: 'Reception & Lounge', img: 'G1.PNG', bg: 'linear-gradient(135deg,#EFE7DE,#D8D1C8)', dark: false },
+  { label: 'Treatment Suite',    img: 'G2.PNG', bg: 'linear-gradient(135deg,#F8F4EF,#EFE7DE)', dark: false },
+  { label: 'Technology Lab',     img: 'G3.PNG', bg: 'linear-gradient(135deg,#D8D1C8,#EFE7DE)', dark: false },
+  { label: 'Clinic Details',     img: 'G4.PNG', bg: 'linear-gradient(135deg,#2B2B2B,#1B1B1B)', dark: true  },
+  { label: 'Consultation Room',  img: 'G3.PNG', bg: 'linear-gradient(135deg,#EFE7DE,#F8F4EF)', dark: false },
+  { label: 'Clinic View',          img: 'clinic.png', bg: 'linear-gradient(135deg,#EFE7DE,#D8D1C8)', dark: false }
+];
+
+var mainInner = document.getElementById('galleryMobMainInner');
+var thumbsContainer = document.getElementById('galleryMobThumbs');
+
+if (thumbsContainer && mainInner) {
+  galleryData.forEach(function(item, i) {
+    var thumb = document.createElement('div');
+    thumb.className = 'gallery-mob-thumb' + (i === 0 ? ' active' : '');
+    var inner = document.createElement('div');
+    inner.className = 'gallery-mob-thumb-inner';
+    if (item.img) {
+      var timg = document.createElement('img');
+      timg.src = item.img;
+      timg.alt = item.label;
+      timg.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;';
+      inner.appendChild(timg);
+    } else {
+      inner.style.background = item.bg;
+      inner.style.color = item.dark ? 'rgba(255,255,255,.5)' : 'rgba(61,55,48,.45)';
+      inner.style.fontSize = '8px';
+      inner.style.textTransform = 'uppercase';
+      inner.style.textAlign = 'center';
+      inner.style.padding = '4px';
+      inner.textContent = item.label;
+    }
+    thumb.appendChild(inner);
+
+    thumb.addEventListener('click', function() {
+      mainInner.innerHTML = '';
+      if (item.img) {
+        var mimg = document.createElement('img');
+        mimg.src = item.img;
+        mimg.alt = item.label;
+        mimg.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0;';
+        mainInner.style.background = 'none';
+        mainInner.appendChild(mimg);
+      } else {
+        mainInner.style.background = item.bg;
+      }
+      document.querySelectorAll('.gallery-mob-thumb').forEach(function(t, j) {
+        t.classList.toggle('active', j === i);
+      });
+    });
+    thumbsContainer.appendChild(thumb);
+  });
+}
+</script>
+
+<!-- FLOATING SOCIAL BUTTONS -->
+<div class="floating-socials">
+  <a href="https://wa.me/97145776784" target="_blank" rel="noopener" class="float-btn float-btn-wa" title="WhatsApp">
+    <span class="float-tooltip">WhatsApp Us</span>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+  <a href="https://www.instagram.com/vogueclinics/" target="_blank" rel="noopener" class="float-btn float-btn-ig" title="Instagram">
+    <span class="float-tooltip">Follow Us</span>
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+    </svg>
+  </a>
+</div>
+
+</body>
+</html>
